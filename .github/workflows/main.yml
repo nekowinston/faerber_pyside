@@ -28,14 +28,17 @@ jobs:
       run: |
         poetry config virtualenvs.in-project true
         poetry install
+        echo $(poetry env info -p)/bin > $GITHUB_PATH
 
     - name: Build Qt Files
       run: |
-        poetry shell
+        echo $(which python)
+        echo $PATH
         ./build-qt.sh
     - name: Build with PyInstaller
       run: |
-        poetry shell
+        echo $(which python)
+        echo $PATH
         ./make.sh
 
     - uses: actions/upload-artifact@v2
