@@ -32,13 +32,9 @@ jobs:
 
     - name: Build Qt Files
       run: |
-        echo $(which python)
-        echo $PATH
         ./build-qt.sh
     - name: Build with PyInstaller
       run: |
-        echo $(which python)
-        echo $PATH
         ./make.sh
 
     - uses: actions/upload-artifact@v2
