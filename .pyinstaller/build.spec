@@ -1,4 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
 
 
 block_cipher = None
@@ -27,7 +28,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,  
           [],
-          name='ign-qt',
+          name=os.path.join('dist', ('ignqt' if sys.platform == 'linux' else 'IGNQt')),
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
@@ -39,3 +40,8 @@ exe = EXE(pyz,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None )
+
+if sys.platform == 'darwin':
+   app = BUNDLE(exe,
+                name='IGNQt.app',
+                icon=None)
