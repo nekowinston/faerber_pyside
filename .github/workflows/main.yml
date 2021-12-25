@@ -44,9 +44,11 @@ jobs:
     - name: 'Poetry: Configure (Ubuntu, MacOS)'
       if: ${{ contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macOS') }}
       run: echo "$PWD/.venv/bin" >> $GITHUB_PATH
+      shell: bash
     - name: 'Poetry: Configure (Windows)'
       if: contains(matrix.os, 'windows')
       run: echo "$PWD/.venv/Scripts" >> $GITHUB_PATH
+      shell: bash
 
     - name: 'Build Qt Files'
       shell: bash
