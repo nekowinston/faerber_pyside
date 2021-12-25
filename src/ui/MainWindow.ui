@@ -16,15 +16,8 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
-  <property name="palette">
-   <palette>
-    <active/>
-    <inactive/>
-    <disabled/>
-   </palette>
-  </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>IGNQt</string>
   </property>
   <widget class="QWidget" name="wgt_central">
    <property name="sizePolicy">
@@ -55,7 +48,7 @@
        <enum>QFrame::NoFrame</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pnl_empty">
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -66,9 +59,6 @@
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Click inside to open the Filebrowser&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;or drop an Image anywhere&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::MarkdownText</enum>
           </property>
          </widget>
         </item>
@@ -189,9 +179,6 @@
   <action name="act_about">
    <property name="text">
     <string>About</string>
-   </property>
-   <property name="shortcut">
-    <string>Shift+F1</string>
    </property>
   </action>
   <action name="act_open">
