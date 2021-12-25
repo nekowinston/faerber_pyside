@@ -27,6 +27,6 @@ is activated, building it should be as simple as running:
 python ./make.py
 ```
 
-This will compile update files for Linguist (i18n), compile `.ui` files to 
-Python code, create resource files for Qt, and package with 
+This will update files for Linguist (i18n), compile `.ui` files to Python 
+code, create resource files for Qt, and package with
 [PyInstaller](https://www.pyinstaller.org/) for your system platform.
