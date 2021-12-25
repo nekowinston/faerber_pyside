@@ -48,7 +48,7 @@ if __name__ == "__main__":
     res.qInitResources()
 
     # styles
-    rc = QFile(':/styles/dracula')
+    rc = QFile(":/styles/dracula")
     rc.open(QFile.ReadOnly)
     content = rc.readAll().data()
     app.setStyleSheet(str(content, "utf-8"))
@@ -59,11 +59,11 @@ if __name__ == "__main__":
 
     # install the default language
     path = QLibraryInfo.location(QLibraryInfo.TranslationsPath)
-    if translator.load(QLocale.system(), "qtbase", "_", path):
+    if translator.load(QLocale.system().language(), "qtbase", "_", path):
         app.installTranslator(translator)
     # install languages from resources
     translator = QTranslator(app)
-    if translator.load(QLocale.system(), "", "", ":/translations"):
+    if translator.load(QLocale.system().language(), "", "", ":/translations"):
         app.installTranslator(translator)
 
     window = MainWindow()
