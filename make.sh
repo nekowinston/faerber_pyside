@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 # use hash seed for reproducibility
 export PYTHONHASHSEED=2147483647
