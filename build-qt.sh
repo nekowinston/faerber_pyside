@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
 LANGS=("de")
 
@@ -6,6 +6,7 @@ for lang in "${LANGS[@]}"; do
   pyside6-lupdate src/ui/*.ui -ts src/i18n/$lang.ts
 done
 
+mkdir -p src/res/i18n
 find src/i18n -name "*.ts" -exec bash -c '
   fname="${1%.ts}"
   pyside6-lrelease "$1" -qm "${fname/src\/i18n\//src\/res\/i18n\/}.qm"
