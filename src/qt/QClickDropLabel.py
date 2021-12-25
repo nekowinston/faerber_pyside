@@ -17,7 +17,11 @@ class QClickDropLabel(QLabel):
     def dragEnterEvent(self, e):
         mime = e.mimeData()
         file = mime.urls()[0].toLocalFile()
-        if mime.hasUrls() and len(mime.urls()) == 1 and (file.endswith(".png") or file.endswith(".jpg")):
+        if (
+            mime.hasUrls()
+            and len(mime.urls()) == 1
+            and (file.endswith(".png") or file.endswith(".jpg"))
+        ):
             e.acceptProposedAction()
         else:
             self.wrongdrop.emit(True)

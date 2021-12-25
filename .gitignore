@@ -146,3 +146,9 @@ cython_debug/
 ###Custom
 # don't ignore the shipped pyinstaller spec
 !.pyinstaller/build.spec
+
+# ignore qt-compiled files
+src/ui/**/*.py
+src/res/*.py
+src/res/**/*.py
+src/res/**/*.qm

@@ -1,8 +1,10 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsWidget, QFileDialog
+from PySide6.QtCore import QFile, QTranslator, QLocale, QLibraryInfo
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 
 from ui.MainWindow import Ui_MainWindow
+import res
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -28,7 +30,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # change label text, to indicate that the file is wrong
     def show_drop_decline(self, event):
         if event:
-            self.lbl_open_image.setText(u"<html><head/><body><p align='center'><span style='font-size:14pt;'>Please drop a <strong>single</strong> PNG or JPEG</span></p></body></html>")
+            self.lbl_open_image.setText(
+                "<html><head/><body><p align='center'><span style='font-size:14pt;'>Please drop a <strong>single</strong> PNG or JPEG</span></p></body></html>"
+            )
         else:
             self.lbl_open_image.setText(self.initialText)
 
@@ -41,8 +45,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
+    # this isn't required, but otherwise PyCharm will remove it when optimizing imports
+    res.qInitResources()
+
+    # styles
+    rc = QFile(':/styles/dracula')
+    rc.open(QFile.ReadOnly)
+    content = rc.readAll().data()
+    app.setStyleSheet(str(content, "utf-8"))
+
+    # i18n
+    translator = QTranslator(app)
+    app.installTranslator(translator)
+
+    # install the default language
+    path = QLibraryInfo.location(QLibraryInfo.TranslationsPath)
+    if translator.load(QLocale.system(), "qtbase", "_", path):
+        app.installTranslator(translator)
+    # install languages from resources
+    translator = QTranslator(app)
+    if translator.load(QLocale.system(), "", "", ":/translations"):
+        app.installTranslator(translator)
+
     window = MainWindow()
-    window.resize(800, 600)
     window.show()
 
     sys.exit(app.exec())
