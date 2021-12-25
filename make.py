@@ -10,8 +10,12 @@ import PyInstaller.__main__ as pyinstaller
 import PySide6
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--skip-build', help="skips PyInstaller. useful in dev.",
-                    action="store_true", default=False)
+parser.add_argument(
+    "--skip-build",
+    help="skips PyInstaller. useful in dev.",
+    action="store_true",
+    default=False,
+)
 args = parser.parse_args()
 
 
@@ -32,7 +36,7 @@ def qtt(qt_tool, args, libexec=False):
         print(f"Error: {msg}\nwhile executing '{command}'")
         sys.exit(1)
 
-    if out.decode('utf-8') != "":
+    if out.decode("utf-8") != "":
         print(out.decode("utf-8"))
 
 
@@ -85,9 +89,9 @@ if __name__ == "__main__":
     run_rcc()
 
     if not args.skip_build:
-        pyinstaller.run(['.pyinstaller/build.spec'])
+        pyinstaller.run([".pyinstaller/build.spec"])
 
     # additional CI cleanup operations
-    if os.environ['CI']:
-        if sys.platform == 'darwin':
-            os.remove('dist/IGNQt')
+    if os.environ["CI"]:
+        if sys.platform == "darwin":
+            os.remove("dist/IGNQt")
