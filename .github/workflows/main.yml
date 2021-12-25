@@ -52,12 +52,8 @@ jobs:
       if: contains(matrix.os, 'windows')
       run: echo "$PWD/.venv/Scripts" >> $GITHUB_PATH
 
-    - name: 'Build Qt Files'
-      run: |
-        ./build-qt.sh
     - name: 'Build with PyInstaller'
-      run: |
-        ./make.sh
+      run: python ./make.py
 
     - name: 'Upload artifacts'
       uses: actions/upload-artifact@v2
