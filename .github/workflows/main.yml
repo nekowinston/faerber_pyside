@@ -1,0 +1,53 @@
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+
+    - name: Install poetry
+      run: |
+        curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
+        echo "$HOME/.local/bin" >> $GITHUB_PATH
+    - name: Set up cache
+      if: ${{ !env.ACT }}
+      uses: actions/cache@v2
+      with:
+        path: .venv
+        key: venv-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+    - name: Install dependencies
+      run: |
+        poetry config virtualenvs.in-project true
+        poetry install
+        echo $(poetry env info -p)/bin > $GITHUB_PATH
+
+    - if: contains(matrix.os, 'ubuntu')
+      name: Install Linux dependencies
+      run: |
+        sudo apt-get update -yq &&
+        sudo apt-get install -y  g++ build-essential mesa-common-dev \
+                                 libgl1-mesa-dev libxkbcommon-x11-0 libegl1-mesa \
+                                 libopengl0 libxkb\* libxcb\* libwayland\* \
+                                 libgtk-3-0 libatk1.0-0 libxcomposite1 libtk8.6
+
+    - name: Build Qt Files
+      run: |
+        ./build-qt.sh
+    - name: Build with PyInstaller
+      run: |
+        ./make.sh
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ign-qt-${{ runner.os }}
+        path: dist/*
