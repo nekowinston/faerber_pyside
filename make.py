@@ -10,7 +10,8 @@ import PyInstaller.__main__ as pyinstaller
 import PySide6
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--skip-build', action="store_true", default=False)
+parser.add_argument('--skip-build', help="skips PyInstaller. useful in dev.",
+                    action="store_true", default=False)
 args = parser.parse_args()
 
 
@@ -85,3 +86,8 @@ if __name__ == "__main__":
 
     if not args.skip_build:
         pyinstaller.run(['.pyinstaller/build.spec'])
+
+    # additional CI cleanup operations
+    if os.environ['CI']:
+        if sys.platform == 'darwin':
+            os.remove('dist/IGNQt')
