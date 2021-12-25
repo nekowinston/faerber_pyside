@@ -1,3 +1,4 @@
+import argparse
 import glob
 import os
 import pathlib
@@ -5,7 +6,12 @@ import sys
 from os import path
 from subprocess import Popen, PIPE
 
+import PyInstaller.__main__ as pyinstaller
 import PySide6
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--skip-build', action="store_true", default=False)
+args = parser.parse_args()
 
 
 # modified qt_tool_wrapper from PySide6.scripts
@@ -76,3 +82,6 @@ if __name__ == "__main__":
     run_uic()
     # finally, make python resource file
     run_rcc()
+
+    if not args.skip_build:
+        pyinstaller.run(['.pyinstaller/build.spec'])
