@@ -92,6 +92,6 @@ if __name__ == "__main__":
         pyinstaller.run([".pyinstaller/build.spec"])
 
     # additional CI cleanup operations
-    if os.environ["CI"]:
+    if os.environ.get("CI"):
         if sys.platform == "darwin":
             os.remove("dist/IGNQt")
