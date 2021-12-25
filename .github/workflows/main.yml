@@ -7,7 +7,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest, macOS-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -15,16 +15,24 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Install poetry
+    - name: Install poetry (Ubuntu and macOS)
+      if: ${{ contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macOS') }}
       run: |
         curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/install-poetry.py | python -
         echo "$HOME/.local/bin" >> $GITHUB_PATH
+    - name: Install poetry (Windows)
+      if: contains(matrix.os, 'windows')
+      run: |
+        (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python -
+        echo "$HOME\.poetry\bin" >> $GITHUB_PATH
+      shell: powershell
+
     - name: Set up cache
       if: ${{ !env.ACT }}
       uses: actions/cache@v2
       with:
         path: .venv
-        key: venv-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
+        key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('poetry.lock') }}
     - name: Install dependencies
       run: |
         poetry config virtualenvs.in-project true
@@ -41,9 +49,11 @@ jobs:
                                  libgtk-3-0 libatk1.0-0 libxcomposite1 libtk8.6
 
     - name: Build Qt Files
+      shell: bash
       run: |
         ./build-qt.sh
     - name: Build with PyInstaller
+      shell: bash
       run: |
         ./make.sh
 
