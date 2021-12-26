@@ -12,7 +12,10 @@ class QImageLabel(QLabel):
 
     def __capped_size(self, size):
         # is the new scale > the image size? return the orignal size
-        if self.orig_pixmap.width() < size.width():
+        if (
+            self.orig_pixmap.width() < size.width()
+            and self.orig_pixmap.height() < size.height()
+        ):
             return self.orig_pixmap.size()
         # otherwise, scale down to size
         else:
@@ -30,6 +33,10 @@ class QImageLabel(QLabel):
         # store the passed pixmap as the original
         self.orig_pixmap = pixmap
         # scale it
-        pixmap_scaled = pixmap.scaled(self.__capped_size(size), Qt.KeepAspectRatio)
+        pixmap_scaled = pixmap.scaled(
+            self.__capped_size(size),
+            Qt.KeepAspectRatio,
+            Qt.TransformationMode.SmoothTransformation,
+        )
         # and use the inherited function to set the actual pixmap
         super(QImageLabel, self).setPixmap(pixmap_scaled)

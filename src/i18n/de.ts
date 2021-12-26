@@ -19,77 +19,77 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&apos;center&apos;&gt;&lt;span style=&apos;font-size:14pt;&apos;&gt;Bitte legen Sie ein &lt;strong&gt;einzelnes&lt;/strong&gt; PNG oder JPEG ab&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="103"/>
+        <location filename="../ui/MainWindow.ui" line="106"/>
         <source>Compare</source>
         <translation>Vergleichen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="124"/>
+        <location filename="../ui/MainWindow.ui" line="127"/>
         <source>File</source>
         <translation>Datei</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="132"/>
+        <location filename="../ui/MainWindow.ui" line="135"/>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="138"/>
+        <location filename="../ui/MainWindow.ui" line="141"/>
         <source>Help</source>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="149"/>
+        <location filename="../ui/MainWindow.ui" line="152"/>
         <source>Quit</source>
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="152"/>
+        <location filename="../ui/MainWindow.ui" line="155"/>
         <source>Ctrl+Q</source>
         <translation>Strg+Q</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="160"/>
+        <location filename="../ui/MainWindow.ui" line="163"/>
         <source>Save</source>
         <translation>Speichern</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="163"/>
+        <location filename="../ui/MainWindow.ui" line="166"/>
         <source>Ctrl+S</source>
         <translation>Strg+S</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="168"/>
+        <location filename="../ui/MainWindow.ui" line="171"/>
         <source>Preferences</source>
         <translation>Eigenschaften</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="171"/>
+        <location filename="../ui/MainWindow.ui" line="174"/>
         <source>Ctrl+,</source>
         <translation>Strg+,</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="176"/>
+        <location filename="../ui/MainWindow.ui" line="179"/>
         <source>Support</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="179"/>
+        <location filename="../ui/MainWindow.ui" line="182"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="184"/>
+        <location filename="../ui/MainWindow.ui" line="187"/>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="189"/>
+        <location filename="../ui/MainWindow.ui" line="192"/>
         <source>Open Image</source>
         <translation>Bild öffnen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="192"/>
+        <location filename="../ui/MainWindow.ui" line="195"/>
         <source>Ctrl+O</source>
         <translation>Strg+O</translation>
     </message>
