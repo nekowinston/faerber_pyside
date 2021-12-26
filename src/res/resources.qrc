@@ -1,10 +1,15 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
-    <qresource prefix="styles">
-        <file alias="dracula">styles/dracula.qss</file>
-        <file alias="MaterialDark">styles/MaterialDark.qss</file>
+    <qresource>
+        <file>i18n/de.qm</file>
     </qresource>
-    <qresource prefix="translations">
-        <file alias="de">i18n/de.qm</file>
+    <qresource>
+        <file>data/colorschemes.json</file>
+    </qresource>
+    <qresource prefix="styles">
+        <file alias="Dracula">styles/dracula.qss</file>
+        <file alias="Elegant Dark">styles/ElegantDark.qss</file>
+        <file alias="Material Dark">styles/MaterialDark.qss</file>
+        <file alias="Ubuntu">styles/Ubuntu.qss</file>
     </qresource>
 </RCC>

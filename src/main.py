@@ -2,26 +2,24 @@ import sys
 
 from ImageGoNord.GoNord import GoNord
 from PIL import ImageQt
-from PySide6.QtCore import (
-    QFile,
-    QTranslator,
-    QLocale,
-    QLibraryInfo,
-    QUrl,
-    QDir,
-)
-from PySide6.QtGui import QPixmap, QDesktopServices
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PySide6.QtCore import QDir, QEvent
+from PySide6.QtGui import QPixmap, QCloseEvent
+from PySide6.QtWidgets import QMainWindow, QFileDialog
 
 import res
+from App import App
 from PreferencesWindow import PreferencesWindow
 from ui.MainWindow import Ui_MainWindow
+from utils.qt import open_url
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+
+        # other windows
+        self.wdw_prefs = None
 
         # ImageGoNord stuff
         self.go_nord = GoNord()
@@ -66,18 +64,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.act_open.triggered.connect(self.open_file_dialog.open)
         self.act_save.triggered.connect(self.save_file_dialog.open)
         self.act_pref.triggered.connect(self.action_open_preferences)
-        self.act_support.triggered.connect(self.action_support)
+        self.act_about.triggered.connect(app.aboutQt)
+        self.act_support.triggered.connect(
+            lambda: open_url("https://github.com/nekowinston/IGNQt")
+        )
 
-    def load_image(self, fileUrl):
+    def load_image(self, file_url: str):
         self.btn_compare.setDisabled(True)
         self.act_save.setDisabled(True)
 
         self.wgt_stacked.setCurrentIndex(1)
-        self.orig_image = QPixmap(fileUrl)
+        self.orig_image = QPixmap(file_url)
         self.lbl_view.setPixmap(self.orig_image)
         self.lbl_view.setMask(self.orig_image.mask())
 
-        gn_file = self.go_nord.open_image(fileUrl)
+        gn_file = self.go_nord.open_image(file_url)
         gn_img = self.go_nord.convert_image(gn_file)
         gn_img = ImageQt.ImageQt(gn_img)
 
@@ -87,12 +88,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_compare.setEnabled(True)
         self.act_save.setEnabled(True)
 
-    def save_image(self, fileUrl):
-        print("saving to: {}".format(fileUrl))
-        self.ign_image.save(fileUrl, "PNG")
-
-    def open_url(self, url):
-        QDesktopServices.openUrl(QUrl(url, QUrl.StrictMode))
+    def save_image(self, file_url: str):
+        print("saving to: {}".format(file_url))
+        self.ign_image.save(file_url, "PNG")
 
     def action_compare_pressed(self):
         self.lbl_view.setPixmap(self.orig_image)
@@ -101,11 +99,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lbl_view.setPixmap(self.ign_image)
 
     def action_open_preferences(self):
-        self.wgt_prefs = PreferencesWindow()
-        self.wgt_prefs.show()
-
-    def action_support(self):
-        self.open_url("https://github.com/nekowinston/IGNQt")
+        self.wdw_prefs = PreferencesWindow()
+        self.wdw_prefs.show()
 
     # change label text, to indicate that the file is wrong
     def show_drop_decline(self, event):
@@ -115,35 +110,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.lbl_open_image.setText(self.lbl_initialText)
 
     # reset the label text, if it was changed by the drop event
-    def leaveEvent(self, event):
+    def leaveEvent(self, event: QEvent):
         if self.lbl_open_image.text() != self.lbl_initialText:
             self.show_drop_decline(False)
 
+    # also close preferences window if main window is closed
+    def closeEvent(self, event: QCloseEvent) -> None:
+        if self.wdw_prefs:
+            self.wdw_prefs.close()
+        QMainWindow.closeEvent(self, event)
+
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = App(sys.argv)
 
     # this isn't required, but otherwise PyCharm will remove it when optimizing imports
     res.qInitResources()
-
-    # styles
-    rc = QFile(":/styles/Ubuntu")
-    rc.open(QFile.ReadOnly)
-    content = rc.readAll().data()
-    app.setStyleSheet(str(content, "utf-8"))
-
-    # i18n
-    translator = QTranslator(app)
-    app.installTranslator(translator)
-
-    # install the default language
-    path = QLibraryInfo.location(QLibraryInfo.TranslationsPath)
-    if translator.load(QLocale.system().language(), "qtbase", "_", path):
-        app.installTranslator(translator)
-    # install languages from resources
-    translator = QTranslator(app)
-    if translator.load(QLocale.system().language(), "", "", ":/translations"):
-        app.installTranslator(translator)
 
     window = MainWindow()
     window.show()

@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>IGNQt</string>
+   <string notr="true">IGNQt</string>
   </property>
   <widget class="QWidget" name="wgt_central">
    <property name="sizePolicy">
