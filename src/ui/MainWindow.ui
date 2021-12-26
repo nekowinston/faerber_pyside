@@ -216,7 +216,7 @@
  <connections>
   <connection>
    <sender>act_exit</sender>
-   <signal>triggered(bool)</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>

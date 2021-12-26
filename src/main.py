@@ -1,5 +1,7 @@
 import sys
 
+from ImageGoNord.GoNord import GoNord
+from PIL import ImageQt
 from PySide6.QtCore import (
     QFile,
     QTranslator,
@@ -8,13 +10,12 @@ from PySide6.QtCore import (
     QUrl,
     QDir,
 )
-from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PySide6.QtGui import QPixmap, QDesktopServices
-from ImageGoNord.GoNord import GoNord
-from PIL import ImageQt
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog
 
-from ui.MainWindow import Ui_MainWindow
 import res
+from PreferencesWindow import PreferencesWindow
+from ui.MainWindow import Ui_MainWindow
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -64,6 +65,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.act_open.triggered.connect(self.open_file_dialog.open)
         self.act_save.triggered.connect(self.save_file_dialog.open)
+        self.act_pref.triggered.connect(self.action_open_preferences)
         self.act_support.triggered.connect(self.action_support)
 
     def load_image(self, fileUrl):
@@ -97,6 +99,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def action_compare_released(self):
         self.lbl_view.setPixmap(self.ign_image)
+
+    def action_open_preferences(self):
+        self.wgt_prefs = PreferencesWindow()
+        self.wgt_prefs.show()
 
     def action_support(self):
         self.open_url("https://github.com/nekowinston/IGNQt")
