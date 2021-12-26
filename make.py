@@ -43,9 +43,8 @@ def qtt(qt_tool, args, libexec=False):
 def run_lupdate(languages):
     print("lupdate:")
     for lang in languages:
-        for file in glob.glob("src/**/*.ui", recursive=True):
-            dest = "src/i18n/{}.ts".format(lang)
-            qtt("lupdate", [file, "-ts", dest])
+        dest = "src/i18n/{}.ts".format(lang)
+        qtt("lupdate", ["src", "-ts", dest])
 
 
 def run_lrelease():
