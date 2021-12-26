@@ -55,7 +55,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lbl_initialText = self.lbl_open_image.text()
         self.lbl_rejectText = self.lbl_open_image.property("dropRejectText")
 
+        # accept drops on the initial window, and the imageview
         self.lbl_open_image.drop.connect(self.load_image)
+        self.lbl_view.drop.connect(self.load_image)
 
         self.btn_compare.pressed.connect(self.action_compare_pressed)
         self.btn_compare.released.connect(self.action_compare_released)

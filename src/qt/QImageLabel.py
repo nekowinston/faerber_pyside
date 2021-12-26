@@ -1,9 +1,9 @@
 from PySide6.QtCore import Qt, QSize
 from PySide6.QtGui import QResizeEvent, QPixmap
-from PySide6.QtWidgets import QLabel
+from .QClickDropLabel import QClickDropLabel
 
 
-class QImageLabel(QLabel):
+class QImageLabel(QClickDropLabel):
     def __init__(self, parent=None):
         super(QImageLabel, self).__init__(parent)
 
