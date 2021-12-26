@@ -2,6 +2,7 @@
 <RCC version="1.0">
     <qresource prefix="styles">
         <file alias="dracula">styles/dracula.qss</file>
+        <file alias="MaterialDark">styles/MaterialDark.qss</file>
     </qresource>
     <qresource prefix="translations">
         <file alias="de">i18n/de.qm</file>
