@@ -1,13 +1,14 @@
 import sys
 
 from PySide6.QtCore import QDir, QEvent, Slot
-from PySide6.QtGui import QPixmap, QCloseEvent
-from PySide6.QtWidgets import QMainWindow, QFileDialog
+from PySide6.QtGui import QCloseEvent, QPixmap
+from PySide6.QtWidgets import QFileDialog, QMainWindow
 
 import res
 from App import App
 from PreferencesWindow import PreferencesWindow
 from qt.QIGNWorker import QIGNWorker
+from qt.QWaitingSpinner import QWaitingSpinner
 from ui.MainWindow import Ui_MainWindow
 from utils.qt import open_url
 
@@ -67,6 +68,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             lambda: open_url("https://github.com/nekowinston/IGNQt")
         )
 
+        self.spinner = QWaitingSpinner(self)
+        self.spinner.setInnerRadius(40)
+        self.spinner.setLineLength(20)
+        self.spinner.setLineWidth(8)
+        self.spinner.setRoundness(0)
+        self.wgt_stacked.layout().addWidget(self.spinner)
+
     def load_image(self, file_url: str):
         self.btn_compare.setDisabled(True)
         self.act_save.setDisabled(True)
@@ -78,9 +86,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         worker = QIGNWorker(self, file_url)
         worker.start()
+        self.spinner.start()
+        self.spinner.raise_()
+        print(self.spinner.size())
 
     @Slot(QPixmap)
     def set_image(self, pixmap: QPixmap):
+        self.spinner.stop()
         self.ign_image = pixmap
         self.lbl_view.setPixmap(self.ign_image)
 
