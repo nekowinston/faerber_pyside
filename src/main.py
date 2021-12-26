@@ -127,7 +127,7 @@ if __name__ == "__main__":
     res.qInitResources()
 
     # styles
-    rc = QFile(":/styles/dracula")
+    rc = QFile(":/styles/Ubuntu")
     rc.open(QFile.ReadOnly)
     content = rc.readAll().data()
     app.setStyleSheet(str(content, "utf-8"))
