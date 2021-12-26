@@ -58,6 +58,6 @@ jobs:
     - name: 'Upload artifacts'
       uses: actions/upload-artifact@v2
       with:
-        name: ign-qt-${{ runner.os }}
+        name: ignqt-${{ runner.os }}
         path: dist/*
         retention-days: 7
