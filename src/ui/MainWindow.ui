@@ -85,15 +85,18 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QFrame" name="frm_imgview">
-          <property name="acceptDrops">
-           <bool>true</bool>
+         <widget class="QImageLabel" name="lbl_view">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
-          <property name="frameShape">
-           <enum>QFrame::NoFrame</enum>
+          <property name="text">
+           <string notr="true"/>
           </property>
-          <property name="lineWidth">
-           <number>0</number>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
           </property>
          </widget>
         </item>
@@ -199,6 +202,11 @@
    <class>QClickDropLabel</class>
    <extends>QLabel</extends>
    <header>qt/QClickDropLabel</header>
+  </customwidget>
+  <customwidget>
+   <class>QImageLabel</class>
+   <extends>QLabel</extends>
+   <header>qt/QImageLabel</header>
   </customwidget>
  </customwidgets>
  <resources/>
