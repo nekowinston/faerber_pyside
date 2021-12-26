@@ -1,14 +1,13 @@
 import sys
 
-from ImageGoNord.GoNord import GoNord
-from PIL import ImageQt
-from PySide6.QtCore import QDir, QEvent
+from PySide6.QtCore import QDir, QEvent, Slot
 from PySide6.QtGui import QPixmap, QCloseEvent
 from PySide6.QtWidgets import QMainWindow, QFileDialog
 
 import res
 from App import App
 from PreferencesWindow import PreferencesWindow
+from qt.QIGNWorker import QIGNWorker
 from ui.MainWindow import Ui_MainWindow
 from utils.qt import open_url
 
@@ -22,7 +21,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.wdw_prefs = None
 
         # ImageGoNord stuff
-        self.go_nord = GoNord()
         self.orig_image = QPixmap()
         self.ign_image = QPixmap()
 
@@ -78,11 +76,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.lbl_view.setPixmap(self.orig_image)
         self.lbl_view.setMask(self.orig_image.mask())
 
-        gn_file = self.go_nord.open_image(file_url)
-        gn_img = self.go_nord.convert_image(gn_file)
-        gn_img = ImageQt.ImageQt(gn_img)
+        worker = QIGNWorker(self, file_url)
+        worker.start()
 
-        self.ign_image = QPixmap().fromImage(gn_img)
+    @Slot(QPixmap)
+    def set_image(self, pixmap: QPixmap):
+        self.ign_image = pixmap
         self.lbl_view.setPixmap(self.ign_image)
 
         self.btn_compare.setEnabled(True)
