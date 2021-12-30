@@ -1,4 +1,5 @@
-from PySide6.QtCore import Qt, Signal
+from os import path
+from PySide6.QtCore import QStandardPaths, Qt, Signal
 from PySide6.QtWidgets import QLabel
 
 
@@ -21,13 +22,25 @@ class QClickDropLabel(QLabel):
             mime.hasUrls()
             and len(mime.urls()) == 1
             and (file.endswith(".png") or file.endswith(".jpg"))
-        ):
+        ) or (mime.hasImage()):
             e.acceptProposedAction()
         else:
             self.wrongdrop.emit(True)
             e.ignore()
 
     def dropEvent(self, e):
-        for url in e.mimeData().urls():
-            file_name = url.toLocalFile()
+        mime = e.mimeData()
+
+        if mime.hasImage():
+            image = mime.imageData()
+            file_name = path.join(
+                (QStandardPaths.writableLocation(QStandardPaths.CacheLocation)),
+                "dropped.png",
+            )
+            image.save(file_name, "PNG")
+            print(file_name)
             self.drop.emit(file_name)
+        elif mime.hasUrls():
+            for url in mime.urls():
+                file_name = url.toLocalFile()
+                self.drop.emit(file_name)

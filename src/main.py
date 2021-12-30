@@ -1,6 +1,7 @@
+import os
 import sys
 
-from PySide6.QtCore import QDir, QEvent, Slot
+from PySide6.QtCore import QDir, QEvent, QStandardPaths, Slot
 from PySide6.QtGui import QCloseEvent, QPixmap
 from PySide6.QtWidgets import QFileDialog, QMainWindow
 
@@ -134,6 +135,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 if __name__ == "__main__":
     app = App(sys.argv)
+    app.setOrganizationName("farbenfroh")
+    app.setOrganizationDomain("farbenfroh.io")
+    app.setApplicationName("faerber")
+
+    os.makedirs(
+        QStandardPaths.writableLocation(QStandardPaths.CacheLocation), exist_ok=True
+    )
 
     # this isn't required, but otherwise PyCharm will remove it when optimizing imports
     res.qInitResources()
