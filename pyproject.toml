@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "ignqt"
+name = "faerber"
 version = "0.1.0"
-description = "GUI for ImageGoNord"
+description = "GUI tool to match your wallpaper to your favorite color scheme"
 authors = ["winston <hey@winston.sh>"]
 
 [tool.poetry.dependencies]
@@ -10,10 +10,8 @@ image-go-nord = "^0.1.5"
 PySide6 = "^6.2.2"
 
 [tool.poetry.dev-dependencies]
-black = "^21.12b0"
-pyinstaller = "^4.7"
 pre-commit = "^2.16.0"
-flake8 = "^4.0.1"
+pyinstaller = "^4.7"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -22,7 +20,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.black]
 line-length = 88
 target-version = ['py39']
-include = '.pyinstaller/*'
+include = '.pyinstaller/*.spec'
 extend-exclude = '''
 ^/src/res/__init__.py|
 ^/src/ui/.+\.py
