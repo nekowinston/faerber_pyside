@@ -1,10 +1,10 @@
-# IGNQt
-
+# faerber
 [![Build](https://github.com/nekowinston/IGNQt/actions/workflows/main.yml/badge.svg)](https://github.com/nekowinston/IGNQt/actions/workflows/main.yml)
 [![CodeQL](https://github.com/nekowinston/IGNQt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/nekowinston/IGNQt/actions/workflows/codeql-analysis.yml)
 [![License](https://img.shields.io/github/license/nekowinston/IGNQt)](https://github.com/nekowinston/IGNQt/blob/master/LICENSE)
 
-A Qt6 GUI for [ImageGoNord](https://github.com/Schrodinger-Hat/ImageGoNord) with
+[farbenfroh](https://farbenfroh.io)'s faerber is a Qt GUI for 
+[ImageGoNord](https://github.com/Schrodinger-Hat/ImageGoNord) with
 cross-platform support for Linux, macOS, and Windows!
 
 ImageGoNord is a tool which converts your RGB images to different Code Editor
@@ -14,7 +14,7 @@ this GUI attempts to make it easy to add support for other colorschemes as well.
 ## Downloading the binary
 
 While in development, you can download the artifact for your platform from the
-[latest build](https://github.com/nekowinston/IGNQt/actions/workflows/main.yml).
+[latest build](https://github.com/farbenfroh/faerber/actions/workflows/main.yml).
 
 ## Building locally
 

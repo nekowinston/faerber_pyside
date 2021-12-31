@@ -66,7 +66,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.act_pref.triggered.connect(self.action_open_preferences)
         self.act_about.triggered.connect(app.aboutQt)
         self.act_support.triggered.connect(
-            lambda: open_url("https://github.com/nekowinston/IGNQt")
+            lambda: open_url("https://github.com/farbenfroh/faerber")
         )
 
         self.spinner = QWaitingSpinner(self)

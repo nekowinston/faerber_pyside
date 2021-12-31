@@ -93,4 +93,4 @@ if __name__ == "__main__":
     # additional CI cleanup operations
     if os.environ.get("CI"):
         if sys.platform == "darwin":
-            os.remove("dist/IGNQt")
+            os.remove("dist/faerber")

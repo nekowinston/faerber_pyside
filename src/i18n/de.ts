@@ -39,19 +39,9 @@
         <translation>Schließen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="158"/>
-        <source>Ctrl+Q</source>
-        <translation>Strg+Q</translation>
-    </message>
-    <message>
         <location filename="../ui/MainWindow.ui" line="166"/>
         <source>Save</source>
         <translation>Speichern</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="169"/>
-        <source>Ctrl+S</source>
-        <translation>Strg+S</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="174"/>
@@ -59,19 +49,9 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="177"/>
-        <source>Ctrl+,</source>
-        <translation>Strg+,</translation>
-    </message>
-    <message>
         <location filename="../ui/MainWindow.ui" line="182"/>
         <source>Support</source>
         <translation>Hilfe</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="185"/>
-        <source>F1</source>
-        <translation>F1</translation>
     </message>
     <message>
         <location filename="../ui/MainWindow.ui" line="190"/>
@@ -79,14 +59,9 @@
         <translation>Über</translation>
     </message>
     <message>
-        <location filename="../ui/MainWindow.ui" line="195"/>
+        <location filename="../ui/MainWindow.ui" line="198"/>
         <source>Open Image</source>
         <translation>Bild öffnen</translation>
-    </message>
-    <message>
-        <location filename="../ui/MainWindow.ui" line="198"/>
-        <source>Ctrl+O</source>
-        <translation>Strg+O</translation>
     </message>
 </context>
 <context>

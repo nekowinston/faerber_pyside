@@ -30,7 +30,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name=os.path.join("dist", ("ignqt" if sys.platform == "linux" else "IGNQt")),
+    name=os.path.join("dist", ("faerber" if sys.platform == "linux" else "faerber")),
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -45,4 +45,4 @@ exe = EXE(
 )
 
 if sys.platform == "darwin":
-    app = BUNDLE(exe, name="IGNQt.app", icon=None)
+    app = BUNDLE(exe, name="faerber.app", icon=None)
