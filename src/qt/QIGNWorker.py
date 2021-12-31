@@ -3,7 +3,7 @@ from typing import Union
 
 from ImageGoNord.GoNord import GoNord
 from PIL import ImageQt
-from PySide6.QtCore import QThread, Signal, QObject
+from PySide6.QtCore import QObject, QThread, Signal
 from PySide6.QtGui import QPixmap
 
 

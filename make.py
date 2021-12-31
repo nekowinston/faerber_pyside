@@ -4,7 +4,7 @@ import os
 import pathlib
 import sys
 from os import path
-from subprocess import Popen, PIPE
+from subprocess import PIPE, Popen
 
 import PyInstaller.__main__ as pyinstaller
 import PySide6

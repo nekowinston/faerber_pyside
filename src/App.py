@@ -1,4 +1,4 @@
-from PySide6.QtCore import QFile, QTranslator, QLibraryInfo, QLocale
+from PySide6.QtCore import QFile, QLibraryInfo, QLocale, QTranslator
 from PySide6.QtWidgets import QApplication
 
 

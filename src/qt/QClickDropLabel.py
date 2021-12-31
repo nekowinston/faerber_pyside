@@ -1,4 +1,5 @@
 from os import path
+
 from PySide6.QtCore import QStandardPaths, Qt, Signal
 from PySide6.QtWidgets import QLabel
 
