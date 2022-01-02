@@ -1,7 +1,7 @@
 import sys
 
 from PySide6.QtCore import QDir, QEvent, QUrl, Slot
-from PySide6.QtGui import QCloseEvent, QDesktopServices, QPixmap
+from PySide6.QtGui import QCloseEvent, QColor, QDesktopServices, QImage, QPixmap
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 import res
@@ -79,6 +79,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.spinner.setLineLength(20)
         self.spinner.setLineWidth(8)
         self.spinner.setRoundness(0)
+        self.spinner.setColor(QColor(0xEBCB8B))
         self.wgt_stacked.layout().addWidget(self.spinner)
 
     def load_image(self, file_url: str) -> None:
@@ -87,8 +88,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.wgt_stacked.setCurrentIndex(1)
         self.orig_image = QPixmap(file_url)
-        self.lbl_view.setPixmap(self.orig_image)
-        self.lbl_view.setMask(self.orig_image.mask())
+        grayscale = QPixmap.fromImage(
+            QPixmap.toImage(self.orig_image).convertToFormat(QImage.Format_Grayscale8)
+        )
+        self.lbl_view.setPixmap(grayscale)
 
         worker = QIGNWorker(self, file_url)
         worker.start()
