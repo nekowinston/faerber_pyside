@@ -88,7 +88,7 @@ if __name__ == "__main__":
     run_rcc()
 
     if not args.skip_build:
-        pyinstaller.run([".pyinstaller/build.spec"])
+        pyinstaller.run([".pyinstaller/build.spec", "--noconfirm"])
 
     # additional CI cleanup operations
     if os.environ.get("CI"):
