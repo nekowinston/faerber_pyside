@@ -1,34 +1,118 @@
 {
-  "Nord": {
-    "nord0": "#2e3440",
-    "nord1": "#3b4252",
-    "nord2": "#434c5e",
-    "nord3": "#4c566a",
-    "nord4": "#d8dee9",
-    "nord5": "#e5e9f0",
-    "nord6": "#eceff4",
-    "nord7": "#8fbcbb",
-    "nord8": "#88c0d0",
-    "nord9": "#81a1c1",
-    "nord10": "#5e81ac",
-    "nord11": "#bf616a",
-    "nord12": "#d08770",
-    "nord13": "#ebcb8b",
-    "nord14": "#a3be8c",
-    "nord15": "#b48ead"
-  },
-  "Dracula": {
-    "Background": "#282a36",
-    "Current": "#44475a",
-    "Selection": "#44475a",
-    "Foreground": "#f8f8f2",
-    "Comment": "#6272a4",
-    "Cyan": "#8be9fd",
-    "Green": "#50fa7b",
-    "Orange": "#ffb86c",
-    "Pink": "#ff79c6",
-    "Purple": "#bd93f9",
-    "Red": "#ff5555",
-    "Yellow": "#f1fa8c"
-  }
+  "Nord": [
+    {
+      "name": "nord0",
+      "hex": "#2e3440"
+    },
+    {
+      "name": "nord1",
+      "hex": "#3b4252"
+    },
+    {
+      "name": "nord2",
+      "hex": "#434c5e"
+    },
+    {
+      "name": "nord3",
+      "hex": "#4c566a"
+    },
+    {
+      "name": "nord4",
+      "hex": "#d8dee9"
+    },
+    {
+      "name": "nord5",
+      "hex": "#e5e9f0"
+    },
+    {
+      "name": "nord6",
+      "hex": "#eceff4"
+    },
+    {
+      "name": "nord7",
+      "hex": "#8fbcbb"
+    },
+    {
+      "name": "nord8",
+      "hex": "#88c0d0"
+    },
+    {
+      "name": "nord9",
+      "hex": "#81a1c1"
+    },
+    {
+      "name": "nord10",
+      "hex": "#5e81ac"
+    },
+    {
+      "name": "nord11",
+      "hex": "#bf616a"
+    },
+    {
+      "name": "nord12",
+      "hex": "#d08770"
+    },
+    {
+      "name": "nord13",
+      "hex": "#ebcb8b"
+    },
+    {
+      "name": "nord14",
+      "hex": "#a3be8c"
+    },
+    {
+      "name": "nord15",
+      "hex": "#b48ead"
+    }
+  ],
+  "Dracula": [
+    {
+      "name": "Background",
+      "hex": "#282a36"
+    },
+    {
+      "name": "Current",
+      "hex": "#44475a"
+    },
+    {
+      "name": "Selection",
+      "hex": "#44475a"
+    },
+    {
+      "name": "Foreground",
+      "hex": "#f8f8f2"
+    },
+    {
+      "name": "Comment",
+      "hex": "#6272a4"
+    },
+    {
+      "name": "Cyan",
+      "hex": "#8be9fd"
+    },
+    {
+      "name": "Green",
+      "hex": "#50fa7b"
+    },
+    {
+      "name": "Orange",
+      "hex": "#ffb86c"
+    },
+    {
+      "name": "Pink",
+      "hex": "#ff79c6"
+    },
+    {
+      "name": "Purple",
+      "hex": "#bd93f9"
+    },
+    {
+      "name": "Red",
+      "hex": "#ff5555"
+    },
+    {
+      "name": "Yellow",
+      "hex": "#f1fa8c"
+    }
+  ]
 }
