@@ -19,7 +19,7 @@ class QIGNWorker(QThread):
         self.file = file
         self.go_nord = GoNord()
 
-    def run(self):
+    def run(self) -> None:
         gn_file = self.go_nord.open_image(self.file)
         gn_img = self.go_nord.convert_image(gn_file)
         gn_img = ImageQt.ImageQt(gn_img)

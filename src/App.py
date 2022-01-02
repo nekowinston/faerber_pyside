@@ -50,13 +50,13 @@ class App(QApplication):
         if translator.load(QLocale.system(), "qtbase", "_", path) and lang_avail:
             self.installTranslator(translator)
 
-    def load_stylesheet(self, res="Dracula"):
+    def load_stylesheet(self, res: str = "Dracula") -> None:
         rc = QFile(":/styles/{}".format(res))
         rc.open(QFile.ReadOnly)
         content = rc.readAll().data()
         self.setStyleSheet(str(content, "utf-8"))
 
-    def event(self, event: QEvent):
+    def event(self, event: QEvent) -> bool:
         if event.type() == QEvent.FileOpen:
             self.openFileRequest.emit(event.url())
         return super().event(event)

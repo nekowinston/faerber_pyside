@@ -81,7 +81,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.spinner.setRoundness(0)
         self.wgt_stacked.layout().addWidget(self.spinner)
 
-    def load_image(self, file_url: str):
+    def load_image(self, file_url: str) -> None:
         self.btn_compare.setDisabled(True)
         self.act_save.setDisabled(True)
 
@@ -94,10 +94,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         worker.start()
         self.spinner.start()
         self.spinner.raise_()
-        print(self.spinner.size())
 
     @Slot(QPixmap)
-    def set_image(self, pixmap: QPixmap):
+    def set_image(self, pixmap: QPixmap) -> None:
         self.spinner.stop()
         self.ign_image = pixmap
         self.lbl_view.setPixmap(self.ign_image)
@@ -105,29 +104,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.btn_compare.setEnabled(True)
         self.act_save.setEnabled(True)
 
-    def save_image(self, file_url: str):
+    def save_image(self, file_url: str) -> None:
         print("saving to: {}".format(file_url))
         self.ign_image.save(file_url, "PNG")
 
-    def action_compare_pressed(self):
+    def action_compare_pressed(self) -> None:
         self.lbl_view.setPixmap(self.orig_image)
 
-    def action_compare_released(self):
+    def action_compare_released(self) -> None:
         self.lbl_view.setPixmap(self.ign_image)
 
-    def action_open_preferences(self):
+    def action_open_preferences(self) -> None:
         self.wdw_prefs = PreferencesWindow()
         self.wdw_prefs.show()
 
     # change label text, to indicate that the file is wrong
-    def show_drop_decline(self, event):
-        if event:
+    def show_drop_decline(self, show: bool) -> None:
+        if show:
             self.lbl_open_image.setText(self.lbl_rejectText)
         else:
             self.lbl_open_image.setText(self.lbl_initialText)
 
     # reset the label text, if it was changed by the drop event
-    def leaveEvent(self, event: QEvent):
+    def leaveEvent(self, event: QEvent) -> None:
         if self.lbl_open_image.text() != self.lbl_initialText:
             self.show_drop_decline(False)
 
@@ -138,8 +137,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         QMainWindow.closeEvent(self, event)
 
     @staticmethod
-    def handle_open_file_request(self, url: QUrl):
-        open_url(url)
+    def handle_open_file_request(url: QUrl) -> bool:
+        return open_url(url)
 
 
 if __name__ == "__main__":

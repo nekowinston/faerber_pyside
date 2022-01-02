@@ -1,7 +1,8 @@
 from os import path
 
-from PySide6.QtCore import QStandardPaths, Qt, Signal
-from PySide6.QtWidgets import QLabel
+from PySide6.QtCore import QEvent, QStandardPaths, Qt, Signal
+from PySide6.QtGui import QDragEnterEvent, QDropEvent
+from PySide6.QtWidgets import QLabel, QWidget
 
 
 class QClickDropLabel(QLabel):
@@ -9,14 +10,14 @@ class QClickDropLabel(QLabel):
     drop = Signal(str)
     wrongdrop = Signal(bool)
 
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget = None):
         super(QClickDropLabel, self).__init__(parent)
 
-    def mousePressEvent(self, event):
+    def mousePressEvent(self, event: QEvent) -> None:
         if event.buttons() == Qt.LeftButton:
             self.click.emit(True)
 
-    def dragEnterEvent(self, e):
+    def dragEnterEvent(self, e: QDragEnterEvent) -> None:
         mime = e.mimeData()
         file = mime.urls()[0].toLocalFile()
         if (
@@ -29,7 +30,7 @@ class QClickDropLabel(QLabel):
             self.wrongdrop.emit(True)
             e.ignore()
 
-    def dropEvent(self, e):
+    def dropEvent(self, e: QDropEvent) -> None:
         mime = e.mimeData()
 
         if mime.hasImage():

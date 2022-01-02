@@ -11,7 +11,7 @@ class QImageLabel(QClickDropLabel):
         # store original pixmap, to preserve scaling quality
         self.orig_pixmap = QPixmap()
 
-    def __capped_size(self, size):
+    def __capped_size(self, size: QSize) -> None:
         # is the new scale > the image size? return the orignal size
         if (
             self.orig_pixmap.width() < size.width()
