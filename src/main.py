@@ -1,9 +1,8 @@
-import os
 import sys
 
-from PySide6.QtCore import QDir, QEvent, QStandardPaths, Slot
-from PySide6.QtGui import QCloseEvent, QPixmap
-from PySide6.QtWidgets import QFileDialog, QMainWindow
+from PySide6.QtCore import QDir, QEvent, QUrl, Slot
+from PySide6.QtGui import QCloseEvent, QDesktopServices, QPixmap
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 import res
 from App import App
@@ -11,6 +10,7 @@ from PreferencesWindow import PreferencesWindow
 from qt.QIGNWorker import QIGNWorker
 from qt.QWaitingSpinner import QWaitingSpinner
 from ui.MainWindow import Ui_MainWindow
+from utils.FaerberProtocolHandler import FaerberProtocolHandler
 from utils.qt import open_url
 
 
@@ -18,6 +18,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.logger = QApplication.instance().logger
+
+        # set up scheme handler
+        self.protocolHandler = FaerberProtocolHandler(self)
+        QDesktopServices.setUrlHandler("faerber", self.protocolHandler, "handle")
 
         # other windows
         self.wdw_prefs = None
@@ -132,21 +137,25 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.wdw_prefs.close()
         QMainWindow.closeEvent(self, event)
 
+    @staticmethod
+    def handle_open_file_request(self, url: QUrl):
+        open_url(url)
+
 
 if __name__ == "__main__":
     app = App(sys.argv)
-    app.setOrganizationName("farbenfroh")
-    app.setOrganizationDomain("farbenfroh.io")
-    app.setApplicationName("faerber")
-
-    os.makedirs(
-        QStandardPaths.writableLocation(QStandardPaths.CacheLocation), exist_ok=True
-    )
 
     # this isn't required, but otherwise PyCharm will remove it when optimizing imports
     res.qInitResources()
 
     window = MainWindow()
     window.show()
+
+    # handle startup URLs
+    for arg in sys.argv:
+        if arg.startswith("faerber://"):
+            window.handle_open_file_request(QUrl(arg))
+
+    app.openFileRequest.connect(window.handle_open_file_request)
 
     sys.exit(app.exec())

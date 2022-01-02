@@ -45,4 +45,15 @@ exe = EXE(
 )
 
 if sys.platform == "darwin":
-    app = BUNDLE(exe, name="faerber.app", icon=None)
+    app = BUNDLE(
+        exe,
+        name="faerber.app",
+        icon=None,
+        info_plist={
+                'CFBundleURLTypes': [{
+                    'CFBundleURLName': 'faerber',
+                    'CFBundleTypeRole': 'Viewer',
+                    'CFBundleURLSchemes': ['faerber']
+                }]
+            }
+        )
