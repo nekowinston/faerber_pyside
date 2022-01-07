@@ -1,8 +1,8 @@
 # faerber
 
-[![Build](https://github.com/nekowinston/IGNQt/actions/workflows/main.yml/badge.svg)](https://github.com/nekowinston/IGNQt/actions/workflows/main.yml)
-[![CodeQL](https://github.com/nekowinston/IGNQt/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/nekowinston/IGNQt/actions/workflows/codeql-analysis.yml)
-[![License](https://img.shields.io/github/license/nekowinston/IGNQt)](https://github.com/nekowinston/IGNQt/blob/master/LICENSE)
+[![Build](https://github.com/farbenfroh/faerber/actions/workflows/main.yml/badge.svg)](https://github.com/farbenfroh/faerber/actions/workflows/main.yml)
+[![CodeQL](https://github.com/farbenfroh/faerber/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/farbenfroh/faerber/actions/workflows/codeql-analysis.yml)
+[![License](https://img.shields.io/github/license/farbenfroh/faerber)](https://github.com/farbenfroh/faerber/blob/master/LICENSE)
 
 [farbenfroh](https://farbenfroh.io)'s faerber is a Qt GUI for
 [ImageGoNord](https://github.com/Schrodinger-Hat/ImageGoNord) with
